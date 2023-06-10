@@ -26,6 +26,7 @@ async function run() {
     await client.connect();
 
     const allTeacherCollection = client.db('assignment12').collection('allTeachers');
+    const allClassesCollection = client.db('assignment12').collection('allClasses');
 
     // all teachers
     app.get('/teachers', async(req, res) => {
@@ -33,7 +34,11 @@ async function run() {
         res.send(result);
     })
 
-
+    // all classes
+    app.get('/classes', async(req, res) => {
+        const result = await allClassesCollection.find().toArray();
+        res.send(result);
+    })
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
