@@ -25,7 +25,13 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
 
+    const allTeacherCollection = client.db('assignment12').collection('allTeachers');
 
+    // all teachers
+    app.get('/teachers', async(req, res) => {
+        const result = await allTeacherCollection.find().toArray();
+        res.send(result);
+    })
 
 
 
