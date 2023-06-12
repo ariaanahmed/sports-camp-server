@@ -27,6 +27,7 @@ async function run() {
 
     const allTeacherCollection = client.db('assignment12').collection('allTeachers');
     const allClassesCollection = client.db('assignment12').collection('allClasses');
+    const bookedClassCollection = client.db('assignment12').collection('bookedClasses');
 
     // all teachers
     app.get('/teachers', async(req, res) => {
@@ -38,6 +39,13 @@ async function run() {
     app.get('/classes', async(req, res) => {
         const result = await allClassesCollection.find().toArray();
         res.send(result);
+    })
+
+    app.post('/bookedClasses', async(req, res) => {
+      const bookedClass = req.body;
+      console.log(bookedClass);
+      const result = await bookedClassCollection.insertOne(bookedClass);
+      res.send(result);
     })
 
     // Send a ping to confirm a successful connection
