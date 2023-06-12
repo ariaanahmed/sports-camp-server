@@ -41,6 +41,7 @@ async function run() {
         res.send(result);
     })
 
+    // bookedclasses api
     app.post('/bookedClasses', async(req, res) => {
       const bookedClass = req.body;
       console.log(bookedClass);
