@@ -47,7 +47,9 @@ async function run() {
       if(!email){
         res.send([]);
       }
-      const query = {email: email}
+      const query = {email: email};
+      const result = await bookedClassCollection.find(query).toArray();
+      
     })
 
 
