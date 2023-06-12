@@ -25,9 +25,17 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
 
+    const usersCollection = client.db('assignment12').collection('users');
     const allTeacherCollection = client.db('assignment12').collection('allTeachers');
     const allClassesCollection = client.db('assignment12').collection('allClasses');
     const bookedClassCollection = client.db('assignment12').collection('bookedClasses');
+
+    // users
+    app.post('/users', async(req, res) => {
+      const user = req.body;
+      const result = await usersCollection.insertOne(user);
+      res.send(result);
+    })
 
     // all teachers
     app.get('/teachers', async(req, res) => {
@@ -55,7 +63,7 @@ async function run() {
 
     app.post('/bookedClasses', async(req, res) => {
       const bookedClass = req.body;
-      console.log(bookedClass);
+      console.log(bookedClass); //----------------------------------------------!
       const result = await bookedClassCollection.insertOne(bookedClass);
       res.send(result);
     })
