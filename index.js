@@ -42,8 +42,12 @@ async function run() {
     })
 
     // bookedclasses api
-    app.get('bookedClasses', async(req, res) => {
-      
+    app.get('/bookedClasses', async(req, res) => {
+      const email = req.query.email;
+      if(!email){
+        res.send([]);
+      }
+      const query = {email: email}
     })
 
 
